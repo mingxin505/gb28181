@@ -144,6 +144,47 @@ a=fingerprint:sha-256 FA:14:42:3B:C7:97:1B:E8:AE:0C2:71:03:05:05:16:8F:B9:C7:98:
 a=setup:actpass  
 a=mid:data  
 a=sctpmap:5000 webrtc-datachannel 1024  
+## webrtc 的answer 示例
+{
+    "type":"answer",
+    "sdp":"v=0
+o=- 5056162227500314557 1614928159 IN IP4 0.0.0.0
+s=-
+t=0 0
+a=fingerprint:sha-256 55:CA:9F:BF:A0:A6:88:75:7D:71:80:EB:DF:08:89:94:A1:EB:4C:D7:96:EE:F5:5D:9F:CE:0C:47:4D:E2:B8:73
+a=group:BUNDLE 1
+m=audio 0 UDP/TLS/RTP/SAVPF 0
+a=candidate:1276778842 1 udp 2130706431 192.168.10.107 56532 typ host
+a=candidate:1276778842 2 udp 2130706431 192.168.10.107 56532 typ host
+a=candidate:103462405 1 udp 1694498815 192.168.2.222 2864 typ srflx raddr 0.0.0.0 rport 53804
+a=candidate:103462405 2 udp 1694498815 192.168.2.222 2864 typ srflx raddr 0.0.0.0 rport 53804
+a=end-of-candidates
+m=video 9 UDP/TLS/RTP/SAVPF 96
+c=IN IP4 0.0.0.0
+a=setup:active
+a=mid:1
+a=ice-ufrag:ZFQNenOmjxUdYjPs
+a=ice-pwd:YnftadoLNioHqISApdSCmiPQDdsjuLxc
+a=rtcp-mux
+a=rtcp-rsize
+a=rtpmap:96 VP8/90000
+a=rtcp-fb:96 goog-remb 
+a=rtcp-fb:96 transport-cc 
+a=rtcp-fb:96 ccm fir
+a=rtcp-fb:96 nack 
+a=rtcp-fb:96 nack pli
+a=ssrc:2728159949 cname:pion
+a=ssrc:2728159949 msid:pion video
+a=ssrc:2728159949 mslabel:pion
+a=ssrc:2728159949 label:video
+a=msid:pion video
+a=sendrecv
+"
+}
+## plan-b vs UnifiedPlan
+1. plan-b 要求所有的A/V流都使用相同的编码，UnifiedPlan不需要。
+1. 当只有一路音频视频的时候，两者兼容
+1. plan-b --> UnifiedPlan, 反之不行。  
 ## 小技巧
 ### rfc 标准状态查询
 [查询4092](ttps://www.rfc-editor.org/info/rfc4092)  
